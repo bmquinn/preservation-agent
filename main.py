@@ -2,7 +2,7 @@ from smolagents import CodeAgent, HfApiModel
 
 from image_tool import ImageTool
 from iiif_tool import IIIFTool
-
+from checksum_tool import ChecksumTool
 
 SYSTEM_PROMPT = """You are an expert digital preservation assistant who can analyze IIIF manifests and image metadata. You will be given preservation-related tasks to solve using the available tools.
 
@@ -65,7 +65,7 @@ Your goal is to assist with digital preservation tasks by analyzing manifests an
 
 def create_agent():
     return CodeAgent(
-        tools=[ImageTool(), IIIFTool()],
+        tools=[ImageTool(), IIIFTool(), ChecksumTool()],
         model=HfApiModel(),
         system_prompt=SYSTEM_PROMPT,
         verbose=True,

@@ -6,6 +6,7 @@ An intelligent digital preservation assistant built with 🤗 Hugging Face's `sm
 
 - Automated analysis of IIIF manifests for preservation metadata
 - Technical metadata extraction from image files
+- File integrity verification through checksum generation and validation
 - Interactive REPL interface for preservation tasks
 - Structured thought process combining reasoning and code execution
 - Extensible tool system for preservation-specific functionality
@@ -59,17 +60,36 @@ from preservation_agent import create_agent
 uv run main.py
 ```
 
-This will start the interactive REPL where you can input preservation queries:
+This will start the interactive REPL where you can input preservation queries.
+
+### Using the IIIFTool
+
+The IIIFTool fetches and analyzes IIIF manifests to extract preservation metadata:
 
 ```bash
 > Analyze the IIIF manifest at https://example.org/manifest.json
 ```
 
-### Example Queries
+### Using the ImageTool
+
+The ImageTool extracts technical metadata from image files:
 
 ```bash
-> Analyze the IIIF manifest at https://example.org/manifest.json
 > What can you tell me about /Users/user/example_image.jpg?
+```
+
+### Using the ChecksumTool
+
+The ChecksumTool provides file integrity verification through checksum generation and validation. Just provide a path to generate a SHA-256 checksum, or include the expected checksum to verify file integrity.
+
+```bash
+# Generate a checksum
+> Generate a sha256 for /path/to/file.pdf
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+# Verify a checksum
+> /path/to/file.pdf e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+Checksum valid: true
 ```
 
 ## System Design
